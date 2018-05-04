@@ -1,0 +1,3 @@
+exclude,locale,labelOpacity,labelStrokeWidth,labelStroke,labelFill,lon,lat,offX,offY,opacity,fill,stroke,strokeWidth,radius
+,Paris ,1,0px ,none ,#000 ,2.3508,48.8567,5,5,1,#000 ,#000 ,1,5
+,Puget Sound ,1,0px ,none ,#000 ,-123.365556,48.428611,5,5,1,#000 ,#000 ,1,5

@@ -1,0 +1,13 @@
+{
+  "manifestVersion": 1,
+  "html": [
+    {
+      "filename": "parent.html",
+      "name": "generic cec map",
+      "type": "fragment"
+    }
+  ],
+  	"bodyEnd": {
+    		"js": [ "dist/parent.js" ]
+		}
+   }

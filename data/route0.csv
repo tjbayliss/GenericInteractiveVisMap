@@ -1,0 +1,7 @@
+exclude,place,lon,lat,routeFill,routeStroke,routeStrokeWidth,routeStrokeOpacity,fill,stroke,strokeWidth,radius,opacity
+,HNL,21.31861111,-157.9225,none,#0F0,3px,1,#FFFFFF,#F00,3px,2.5,0.9
+,HKG,22.30888889,113.9147222,none,#0F0,3px,1,#FFFFFF,#F00,3px,2.5,0.9
+,SVO,55.97277778,37.41472222,none,#0F0,3px,1,#FFFFFF,#F00,3px,2.5,0.9
+,HAV,22.98916667,-82.40916667,none,#0F0,3px,1,#FFFFFF,#F00,3px,2.5,0.9
+,CCS,10.60305556,-66.99055556,none,#0F0,3px,1,#FFFFFF,#F00,3px,2.5,0.9
+,UIO,0.113333333,-78.35861111,none,#0F0,3px,1,#FFFFFF,#F00,3px,2.5,0.9

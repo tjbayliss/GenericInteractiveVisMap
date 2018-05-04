@@ -1,0 +1,608 @@
+	.CecGenericCecMap {
+	  /* Nothing here for now */
+	  	min-height:650;
+	}
+	
+	
+	
+
+
+
+	
+	/* Content below is from style.css */
+	@media (min-width: 968px){
+		
+		.trl-legend{
+			display:inline;	
+		}
+							
+		.trl-toolTip {
+			width:325px;
+			min-height:100px;
+			position: absolute;
+			top:0px;
+			left:0px;
+			background:rgba(255, 255, 255, 1.0);
+			color: none;
+			padding:10px;
+			border: 0px solid;
+			display: inline;
+			opacity:0.00;
+			box-shadow:0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+			pointer-events:auto;
+			z-index:1000;
+		}
+		
+	
+		.trl-toolTip .trl-information{
+			margin: 0px 0 0 0px;
+			font-weight: normal;
+			font-size: 12px;
+			line-height:1.35;
+			font-family: Knowledge2017, sans-serif;
+		}
+	}
+	
+	@media (max-width: 967px){
+		
+		.trl-legend{
+			display:inline;	
+		}
+														
+		.trl-toolTip {
+			width:325px;
+			min-height:100px;
+			position: absolute;
+			top:0px;
+			left:0px;
+			background:rgba(255, 255, 255, 1.0);
+			color: none;
+			padding:10px;
+			border: 0px solid;
+			display: inline;
+			opacity:0.00;
+			box-shadow:0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+			pointer-events:auto;
+			z-index:1000;
+		}
+	
+		.trl-toolTip .trl-information{
+			margin: 0px 0 0 0px;
+			font-weight: normal;
+			font-size: 10px;
+			line-height:1.35;
+			font-family: Knowledge2017, sans-serif;
+		}
+	}
+	
+	@media (max-width: 767px){
+		
+		.trl-legend{
+			display:none;
+		}
+		.trl-toolTip .trl-information{
+			margin: 0px 0 0 0px;
+			font-weight: normal;
+			font-size: 12px;
+			line-height:1.35;
+			font-family: Knowledge2017, sans-serif;
+			display:none;
+		}
+	}
+
+	
+	.container{
+		padding:15px;	
+	}
+	
+	.row {
+		padding-top:0px;
+		padding-bottom:0px;
+	}	
+	
+	.trl-panel{
+		height:65px;
+		margin-bottom:0px;
+		border-width:0px;
+	}
+	
+	.trl-panel0{
+		height:auto;	
+		display: block;
+		overflow: auto;
+	}
+	
+	.trl-solarTerminator-night {
+	  stroke: #000000;
+	  fill: #000000;
+	  fill-opacity:.5;
+	  pointer-events:none;
+	}
+	
+	path.trl-contour{
+	  stroke: #444;
+	  stroke-opacity:0.1;
+	  opacity:0.33;
+	}
+
+	.trl-wrapper{
+		width: 100%;
+		height: auto;
+		max-width: 100%;
+		display: inline;
+		background-color:transparent;
+	}
+	
+	.trl-text{
+	  font-size:10px;
+	  text-transform:capitalize;
+	}
+	
+	.trl-container{
+		margin:10px 10%;
+		border:0px solid #F00;
+		border-radius: 0px;
+		height:auto;
+		background: transparent;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		position:relative;
+		top:-10px;
+		left:0px;
+	}
+	
+	.trl-headerContainer{
+		margin:0px 10%;
+		border:0px solid #000;
+		border-radius: 5px;
+		height:100%;
+		overflow:hidden;
+		background:transparent;
+		font-family: Knowledge2017, Arial, Sans-serif;
+	}
+	
+	.trl-hidden { 
+	  display: none; 
+	}
+	
+	div.trl-tooltip {
+	  color: #222; 
+	  background: #fff; 
+	  padding: .5em; 
+	  text-shadow: #f5f5f5 0 1px 0;
+	  border-radius: 2px; 
+	  box-shadow: 0px 0px 2px 0px #a6a6a6; 
+	  opacity: 0.9; 
+	  position: absolute;
+	}
+	
+	.trl-vertex{
+		stroke-width:0px;
+		pointer-events:none;
+	}
+	
+	.hulls, .hullSites{
+		pointer-events:none;
+	}
+	
+	.trl-vertexLabels{
+		fill:#000000;
+		stroke:#000000;
+		stroke-width:0px;
+		font-size:6px;
+		pointer-events:none;
+	}
+
+	.trl-locale{
+		pointer-events:none;	
+	}
+	
+	.trl-localeLabel{
+		fill:#F00;
+		font-size:0.5vw;
+		stroke-width:0px;
+		stroke:1px;
+		pointer-events:none;
+		pointer-events:none;
+	}
+	
+	.trl-placeLabels{
+		font-size:0.5vw;
+		pointer-events:none;
+	}
+	
+	.trl-trail{
+		stroke-width:2px;
+		pointer-events:none;
+	}
+
+	.trl-flow {
+		fill: none;
+		stroke: #333;
+		opacity: 1.00;
+		stroke-linecap:round;
+		pointer-events:none;
+	}
+	
+	.trl-point {
+		fill: #fff;
+		stroke: red;
+		stroke-width: 2px;
+		pointer-events:none;
+	}
+	
+	.trl-points text {
+		pointer-events:none;
+		font: 0.5vw Knowledge2017, Arial, Sans-serif;
+		text-anchor: middle;
+		text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+	}
+	
+	.trl-route {
+		pointer-events:none;
+	}
+	
+	.trl-mainHeader{
+		font-size:40px;
+		font-weight:bold;
+		margin:0px;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		pointer-events:none;
+	}
+	
+	.trl-subHeader{
+		font-size:24px;
+		margin:0px;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		pointer-events:none;
+	}
+	
+	.trl-headers .trl-information{
+		font-size:10px;
+		margin:0px;
+		line-height:1.0;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		pointer-events:none;
+	}
+	
+	.trl-feature {
+		cursor: pointer;
+	}
+	
+	.trl-selected{
+		fill:red;
+		stroke-width:2px;
+		stroke:#00F;
+	}
+	
+	.trl-mesh {
+		fill: none;
+		stroke: #fff;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	
+	.trl-background {
+		fill: #FFFFFF;
+		pointer-events: all;
+	}	
+	
+	.trl-the-basics{
+		width:100%;
+		vertical-align:middle;
+		margin-top:10px;	
+		margin-bottom:10px;	
+		margin:10px;	
+		display:inline-block;
+		margin-left:-3%;
+		font-family: Knowledge2017, Arial, Sans-serif;
+	}
+	
+	.typeahead{/* NEED TO CHANGE THIS TO trl-....*/
+		width:100%;
+		border-radius:5px;
+		height:40px;	
+		outline: none;
+		margin-left:15px;
+		margin-right:15px;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		z-index:1000;
+		font-size:10px;
+		
+	}
+	
+	.trl-tt-selectable{
+		background-color:#FFFFFF;
+		width: 290px;
+		margin-left: 16px;
+		display:inline-block;
+		border-style:solid;
+		border-width:0.5px;
+		border-color:#AFAFAF;
+		font-size:15px;
+		padding:5px;
+		padding-top:10px;
+	}
+	
+	.trl-tt-selectable:hover{
+		background-color:#D0D0D0;
+		cursor: pointer;
+	}
+	
+	.trl-typeheadLayer{
+		border:0px solid #000;
+		border-radius: 5px;
+		height:100%;
+		overflow:hidden;
+		background: white;
+		font-family: Knowledge2017, Arial, Sans-serif;
+	}
+	
+	.trl-buttonsLayer{
+		margin:/*10px 10%*/0px;
+		border:0px solid #000;
+		border-radius: 5px;
+		height:50px;
+		overflow:hidden;
+		background: transparent;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		display:inline;
+		position:relative;
+		top:0px;
+		left:5px;
+	}
+	
+	.trl-selectLayer{
+		position:absolute;	
+		left:10%;	
+		top:10px;
+		float:left;	
+	}
+	
+	.trl-manualPosition{
+		display:inline-block;
+		position:absolute;
+		right:10%;	
+		top:10px;
+		float:right;
+	}
+	
+	.twitter-typeahead{
+		width:100%;
+		top:0px;
+		position:absolute;	
+	}
+	
+	button {
+		padding: 10px 20px;
+	}
+	
+	.trl-centroidMarkers{
+		fill:#000000;
+		stroke:none;
+		pointer-events:none;	
+	}
+	
+	.trl-centroidMarkerLabels{
+		font-size:8px;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		fill:#000000;
+		stroke:none;
+		pointer-events:none;	
+	}
+	
+	.trl-graticule{
+		pointer-events:none;	
+	}
+	
+	.trl-equator{
+		pointer-events:none;	
+	}
+	
+	.trl-form-group{
+		margin-right:0%;
+	}
+	
+	#positionLatitude, #positionLongitude{
+		border-radius: 0px 5px 5px 0px;
+		font-size:10px;
+		text-anchor:start;
+	}
+	
+	.input-group-addon{
+		border-radius: 5px 0px 0px 5px;
+		font-size:10px;
+	}
+	
+	#trl-latitude{
+		position:relative;
+		left:0px;
+		top:10px;
+		width:49%;
+		display:inline-block;
+		text-anchor:start;
+	}
+	
+	#trl-longitude{
+		position:relative;
+		left:0px;
+		top:10px;
+		width:49%;
+		display:inline-block;
+		text-anchor:start;
+	}
+	
+	.trl-centrePoint{
+		fill:none;
+		stroke:#005DA2;
+		stroke-width:0.75px;	
+	}
+	
+	.trl-centreDot{
+		fill:#005DA2;
+		stroke:#005DA2;
+		stroke-width:0.0px;	
+	}
+	
+	.form-control{
+		width:15%;	
+	}
+	
+	.trl-buttons{
+		background:transparent;
+		opacity:1.0;
+	}
+	
+	.trl-title{
+		padding-top:5px;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		font-weight:ultralight;
+	}
+	
+	.trl-legendElementText{
+		font-family: Knowledge2017, Arial, Sans-serif;
+		font-weight:ultralight;
+		font-size:1.75vh;	
+	}
+	
+	.trl-legendBackground{
+		pointer-events:none;
+	}
+	
+	.legendSizeLine line {
+    	stroke: rgb(46, 73, 123);
+	}
+	
+	.trl-legendTitle{
+		font-size:1.5vh;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		/*fill:#000000;*/
+	}
+	
+	.trl-label{
+		/*font-size:1.00vh;*/
+		font-size:8px;
+		font-family: Knowledge2017, Arial, Sans-serif;
+		/*fill:#000000;*/
+	}
+	
+	.annotation path {
+		fill: none;
+		stroke: #ff8684;
+		stroke-width: 2;
+	}
+	
+	.annotation text {
+		font-size:0.25vh;
+		fill: #ff8684;
+	}
+	
+	.annotation tspan {
+		fill: #111144;
+		color:red;
+		background-color:blue;
+	}
+	
+	.annotation-note-title {
+		font-weight: bold;
+	}
+	
+	.annotation-note-bg {
+		fill: #111144;
+		fill-opacity: 1.0;
+		/*filter: url(#blur-effect);*/
+	}
+	
+	circle.handle {
+		stroke-dasharray: 5;
+		stroke: #e91e56;
+		fill: rgba(255, 255, 255, .5);
+		cursor: move;
+		pointer-events:none;
+		stroke-opacity: .4;
+	}
+	
+	circle.handle.highlight {
+		stroke-opacity: 1;
+	}
+	
+	.trl-annotation-tip .annotation path {
+		stroke: #000000;
+		pointer-events:none;
+	}
+	.trl-annotation-tip .annotation text {
+		font-size:1.0vh;
+		fill: #000;
+		pointer-events:none;
+	}
+	
+	.trl-swatch, .trl-label, .trl-legendTitle{
+		pointer-events:none;
+	}
+	
+	.trl-toolTip {
+		width:325px;
+		min-height:100px;
+		position: absolute;
+		top:0px;
+		left:0px;
+		background:rgba(255, 255, 255, 1.0);
+		color: none;
+		padding:10px;
+		border: 0px solid;
+		display: inline;
+		opacity:0.00;
+		box-shadow:0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+		pointer-events:auto;
+		z-index:1000;
+	}
+
+	.trl-toolTip .trl-information{
+		margin: 0px 0 0 0px;
+		font-weight: normal;
+		font-size: 12px;
+		line-height:1.35;
+		font-family: Knowledge2017, sans-serif;
+	}
+	
+	.trl-toolTipLinkLine{
+		fill:#000000;
+		stroke:#4A4933;
+		stroke-width:1.0px;
+		opacity:0.5;
+	}
+	
+	.trl-toolTipFurniture.trl-selectedCentroidMarkers{						
+		fill:#4A4933;
+		stroke:#4A4933;
+		stroke-width:2px;
+		fill-opacity:0.5;
+	}
+							
+	.trl-flag-icon {
+		border: 1px solid #eee;
+		float:left;
+	 }	
+	
+	.trl-toolTip .trl-header .trl-country-flag {
+		float:left;
+		margin: 20px 0 0 20px;
+		font-weight: 600;
+		font-family: Knowledge2017, sans-serif;
+	}
+						
+	.trl-toolTip .trl-header .trl-flag {
+	  float: left;
+	  width: 70px;
+	  font-size: 50px;
+	 }
+	
+	.trl-toolTip .trl-header {
+		font-size: 18px;
+		float: left;
+		margin-bottom: 15px;
+		width: 100%;
+		background: red;
+		opacity:0.99;
+		background:rgba(255, 255, 255, 0.0);
+		height:50px;
+	}

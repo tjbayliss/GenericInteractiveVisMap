@@ -1,0 +1,16 @@
+exclude,point,lon,lat,value,projected,displayAt
+,Aug-17,-55.1,13.1,35,FALSE,2
+,Aug-18,-56.5,12.9,40,FALSE,2
+,Aug-19,-64.1,13.7,40,FALSE,2
+,Aug-20,-71.8,14.3,35,FALSE,2
+,Aug-23,-92.5,21.5,35,FALSE,2
+,Aug-24,-92.5,21.7,35,FALSE,2
+,Aug-25,-94.3,25,85,FALSE,2
+,Aug-26,-96.7,27.7,130,FALSE,2
+,Aug-27,-97.3,29.3,50,FALSE,2
+,Aug-28,-96.8,28.9,40,FALSE,2
+,Aug-29,-95.5,28.2,45,FALSE,2
+,Aug-30,-93.9,28.7,50,FALSE,2
+,Aug-31,-92.6,31.2,35,FALSE,2
+,Sep-01,-89,34.3,30,FALSE,2
+,Sep-02,-84.8,37.5,2,FALSE,2

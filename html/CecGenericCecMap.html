@@ -1,0 +1,488 @@
+<html lang="en">
+    <head>
+    
+        <meta charset="utf-8">
+        <!-- Your CSS imports -->
+        <link rel="stylesheet" href="../css/dist/main.css" />  
+        <link rel="stylesheet" href="../css/jquery-ui-v1.12.1.css">
+        <link rel="stylesheet" href="../css/knowledge.css">
+        <link rel="stylesheet" href="../css/flag-icon.min.css">
+        <link rel="stylesheet" href="../css/font-awesome.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/mapglyphs/2.0/mapglyphs.css">
+                   
+	</head>
+    
+	<body class="CECIframeBody">
+    
+		<div class="CecGenericCecMap">
+      
+      		<div class="trl-wrapper" data-bundle-dir="{bundle_dir}">
+            
+            	<div class="container">
+                
+                    <div class="row headers hide">
+                    
+                   		<div class="trl-panel trl-panel0 col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        	<p class="trl-title"> </p>
+                        	<p class="trl-mainHeader"> </p>
+                        	<p class="trl-subHeader"> </p>
+                        	<p class="trl-information"> </p>
+                        </div> 
+                    
+                    </div>
+                
+                    <div class="row controls">
+                    
+                        <div class="trl-panel trl-panel1 col-sm-12 col-xs-12 col-md-4 col-lg-4"> 
+                        
+                            <div id="the-basics" class="trl-the-basics">
+                                <input id="typeahead" autocomplete="off" class="typeahead" type="text" placeholder="e.g. United Kingdom">
+                            </div>
+                        </div>
+                    
+                        <div class="trl-panel trl-panel2 col-sm-8 col-xs-8 col-md-5 col-lg-5"> 
+                        
+                            <div id="trl-latitude" class="trl-form-group has-error">  
+                            
+                                <div class="input-group">
+                                    <div class="input-group-addon">Latitude</div>
+                                    <input type="text" placeholder="[-]123.45" autocomplete="off" class="form-control" id="positionLatitude" name="latitude" onblur="onblurLatitude()">
+                                </div>
+                            </div>
+                        
+                            <div id="trl-longitude" class="trl-form-group has-error"> 
+                             
+                                <div class="input-group">
+                                    <div class="input-group-addon">Longitude</div>
+                                    <input type="text" placeholder="[-]12.34" autocomplete="off" class="form-control" id="positionLongitude" name="longitude" onblur="onblurLongitude()"> 
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                            
+						<div class="trl-panel trl-panel3 col-sm-4 col-xs-4 col-md-3 col-lg-3"> 
+                            
+                            <div class="trl-buttonsLayer" style="vertical-align:middle;">
+                            
+                                <button type="button" class="btn trl-buttons trl-button-Zout disabled" id="zoom_out" onClick="zoomMap(this)"> 
+                                	<img height="40px" width="40px" class="magnify magnify-out" src="../images/zoom-out.svg"></img>
+                                </button>
+                                
+                                <button type="button" class="btn trl-buttons trl-button-Zin" id="zoom_in" onClick="zoomMap(this)">
+                                	<img height="40px" width="40px" class="magnify magnify-in" src="../images/zoom-in.svg"></img>
+                                </button>
+                                
+                                <button type="button" class="btn trl-buttons trl-button-reset disabled" id="reset" onClick="reset(this)">
+                               		<img height="40px" width="40px" class="magnify reset" src="../images/reset.svg"></img>
+                                </button>
+                            </div>
+                             
+                    	</div> 
+                            
+               		</div>
+				
+                </div>
+                
+           		<div class="trl-container" id="container"> </div>
+                  
+        	</div>
+            
+    	</div>
+        
+        <!-- Your JS imports -->
+        <script src="../js/jquery.js"></script>
+        
+        <script src="../js/modernizr.js"></script>
+        <script src="../js/d3-v4.js" type='text/javascript'></script> 
+        <script src="../js/jquery-ui.js"></script>
+        <script src="../js/d3-geo-projection.v1.min.js"></script>
+        <script src="../js/d3-geo-voronoi.min.js"></script>
+        <script src="../js/Underscore-1.8.3.js"></script>
+        <script src="../js/topojson.v2.min.js"></script>
+        <script src="../js/typeahead.bundle.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/d3-legend.js"></script>
+        <script src="../js/d3-annotation.min.js"></script>
+        <script src="../js/d3-scale-chromatic.v0.3.min.js"></script>
+        
+        <script>
+			
+			var vis = {}; // global object variable to contain all variables prefixed with 'vis.'
+
+		
+			/*
+				NAME: 			reset	
+				DESCRIPTION: 	actions to perform if user resets view back to zoomlevel = 1 
+								NOTE: This is a copy of the same-named function in main.js so that the reset button can function
+				CALLED FROM:	click event on 'trl-background'
+								#reset button
+				CALLS:			n/a	
+				REQUIRES: 		n/a	
+				RETURNS: 		n/a		
+			*/
+			function reset() {
+				
+				
+				vis.active.classed("trl-active", false);
+				vis.active = d3.select(null);
+				d3.selectAll(".trl-feature").style("fill-opacity" , 1.00).style("stroke-width" , 0.25);
+				
+				
+				vis.svg.transition()
+					.duration(vis.config.vars.duration)
+					.call( vis.zoom.transform, d3.zoomIdentity );
+					
+					
+				// update values to defaults/placeholder textx and styling of controls
+				$("#reset").addClass("disabled");
+				$(".magnify.reset").addClass("disabled");
+				$(".trl-button-Zout").addClass("disabled");
+				d3.selectAll(".trl-centrePoint").remove();
+				d3.select("#trl-longitude").attr("class","trl-form-group has-error");
+				d3.select("#trl-latitude").attr("class","trl-form-group has-error");
+				$("#positionLongitude").val("").prop("placeholder","[-]123.45");
+				$("#positionLatitude").val("").prop("placeholder","[-]12.34");
+				$("#typeahead").val("").prop("placeholder","e.g. United Kingdom");
+				
+				
+				
+				return;
+				
+				
+			}// end function reset
+
+		
+		
+		
+			/*
+				NAME: 			zoomMap	
+				REFERENCE URL:	https://gist.github.com/mbostock/4163057
+								https://gist.github.com/trusktr/8cda749c4f1543ece11327176f67671c	
+								NOTE: This is a copy of the same-named function in main.js so that the zoom in/out buttons can function
+				CALLED FROM:	zoom in and zoom out buttons on control panel 
+				CALLS:			zoom
+				REQUIRES: 		fid - button ID information of button pressed	
+				RETURNS: 		n/a		
+			*/
+			function zoomMap(fid){
+				
+				
+				// update classname of reset controls...
+				$("#reset").addClass("disabled");
+				$(".magnify.reset").addClass("disabled");
+				
+				
+				// check FID of selected button and action accordingly
+				if( fid.id == "zoom_in" ){
+					if( Number(vis.currentZoomLevel+1) <= vis.zoom.scaleExtent()[1] ){
+						vis.currentZoomLevel++; // increase zoom level by 1
+						
+						
+						// update button class names accordingly
+						if( vis.currentZoomLevel == vis.zoom.scaleExtent()[1] ){
+							$(".trl-button-Zout").addClass("disabled");
+							$(".magnify-in").addClass("disabled");
+						}
+						$(".trl-button-Zout").removeClass("disabled");
+						$(".magnify-out").removeClass("disabled");
+					}
+				}
+				else if( fid.id == "zoom_out" ){
+					if( Number(vis.currentZoomLevel-1) >= vis.zoom.scaleExtent()[0] ){
+						vis.currentZoomLevel--; // decreased zoom level by 1
+						
+						
+						// update button class names accordingly
+						if( vis.currentZoomLevel == vis.zoom.scaleExtent()[0] ){
+							$(".trl-button-Zin").addClass("disabled");
+							$(".magnify-out").addClass("disabled");
+						}
+						$(".trl-button-Zin").removeClass("disabled");
+						$(".magnify-in").removeClass("disabled");
+					}
+				}
+				else{ }
+				
+				
+				// update map view to new zoom level 
+				vis.zoom.scaleTo(vis.svg, vis.currentZoomLevel);
+				
+				
+				return;
+				
+				
+			}// end function zoomMap
+				
+				
+			
+			// defines map zoom characterists available.
+			vis.zoom = d3.zoom()
+						.scaleExtent([1, 10])
+						.on("zoom", function(){
+							if( vis.config.vars.isPannable == true ){ zoomed(); }
+						});
+						
+						
+						
+			
+
+
+	
+	
+	
+		/*
+			NAME: 			onblurLatitude			
+			DESCRIPTION: 	function to handle user inut into latitude text box on interface. 	 
+			CALLED FROM:	 
+			CALLS:			drawCentrePoint
+			REQUIRES: 		n/a	
+			RETURNS: 		n/a		
+		*/
+		function onblurLatitude(){
+				
+				
+				// intialise local regex terms and boolean values
+				var regExp_blank = /[ ]+/;	
+				var regExp_latitudeInt = /^-?[0-9]{1,2}$/;		
+				var regExp_latitudeFlt = /^-?[0-9]{1,2}\.[0-9]{1,}$/;	
+				var valueToCheck = document.getElementById("positionLatitude").value;
+				vis.latitudeHasError = true;
+				var halfWidth = 5;
+				
+				
+				// if input is correct format, 	
+				if ( regExp_latitudeInt.test(valueToCheck) == true || regExp_latitudeFlt.test(valueToCheck) == true )
+				{
+					d3.select("#trl-latitude").attr("class","trl-form-group has-feedback");
+					vis.latitudeHasError = false;
+					
+				}// end if ....
+				
+				// if input is incorrect format,	
+				else if ( regExp_blank.test(valueToCheck) == true || valueToCheck == '' )
+				{
+					d3.select("#trl-latitude").attr("class","trl-form-group has-error");
+					vis.latitudeHasError = true;
+				}
+				
+				// else error ...
+				else {					
+					d3.select("#trl-latitude").attr("class","trl-form-group has-error");
+					vis.latitudeHasError = true;
+					
+				} // end else ...
+				
+				
+				// if no errors are found in submitted latitude and longitude values,
+				// calculate bounding coordinates or zoomed to bounding box.
+				if ( vis.longitudeHasError==false && vis.latitudeHasError==false ){
+					
+					var coords = vis.projection([Number(document.getElementById("positionLongitude").value) , Number(document.getElementById("positionLatitude").value)])
+						bounds =  [
+									[
+										d3.min([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[0],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[0]
+											  ]),
+										d3.min([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[1],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[1]
+											  ]),
+									],
+									[
+										d3.max([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[0],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[0]
+											  ]),
+										d3.max([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[1],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[1]
+											  ]),
+									]
+								],
+						dx = bounds[1][0] - bounds[0][0],
+						dy = bounds[1][1] - bounds[0][1],
+						x = coords[0],
+						y = coords[1],
+						scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / vis.width, dy / vis.height))),
+						translate = [vis.width / 2 - scale * x, vis.height / 2 - scale * y];
+						
+				
+					drawCentrePoint(); // call function to draw marker on selected [lon,lat] point
+						
+						
+					// transtiion main svg map to new centre on new position
+					vis.svg.transition()
+						.duration(vis.config.vars.duration)
+						.call( vis.zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) ); // updated for d3 v4
+			
+					
+					// update class name for magnify reset butto
+					$(".magnify.reset").removeClass("disabled");
+				}
+				else {
+					
+				}
+				
+				return;
+				
+			}// end function onblurLatitude()
+
+
+	
+	
+	
+		/*
+			NAME: 			onblurLongitude			
+			DESCRIPTION: 	function to handle user inut into longitude text box on interface. 	 
+			CALLED FROM:	 
+			CALLS:			drawCentrePoint
+			REQUIRES: 		n/a	
+			RETURNS: 		n/a		
+		*/
+		function onblurLongitude(){
+				
+				
+				// intialise local regex terms and boolean values
+				var regExp_blank = /[ ]+/;
+				var regExp_longitudeInt = /^-?[0-9]{1,3}$/;		
+				var regExp_longitudeFlt = /^-?[0-9]{1,3}\.[0-9]{1,}$/;			
+				var valueToCheck = document.getElementById("positionLongitude").value;
+				vis.longitudeHasError = true;
+				var halfWidth = 0.5;
+				
+				
+				// if input is correct format, and within year reange ...  		
+				if ( regExp_longitudeInt.test(valueToCheck) == true  || regExp_longitudeFlt.test(valueToCheck) == true)
+				{
+					d3.select("#trl-longitude").attr("class","trl-form-group has-feedback");
+					vis.longitudeHasError = false;
+					
+				}// end if ....
+				
+				else if ( regExp_blank.test(valueToCheck) == true || valueToCheck == '' )
+				{
+					d3.select("#trl-longitude").attr("class","trl-form-group has-error");
+					vis.longitudeHasError = true;
+				}
+					
+				// else error ...
+				else {					
+					d3.select("#trl-longitude").attr("class","trl-form-group has-error");
+					vis.longitudeHasError = true;
+					return;
+					
+				} // end else ...
+				
+				
+				// if no errors are found in submitted latitude and longitude values,
+				// calculate bounding coordinates or zoomed to bounding box.
+				if ( vis.longitudeHasError==false && vis.latitudeHasError==false ){	
+					
+					var coords = vis.projection([Number(document.getElementById("positionLongitude").value) , Number(document.getElementById("positionLatitude").value)])
+						bounds =  [
+									[
+										d3.min([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[0],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[0]
+											  ]),
+										d3.min([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[1],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[1]
+											  ]),
+									],
+									[
+										d3.max([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[0],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[0]
+											  ]),
+										d3.max([
+													vis.projection([Number(document.getElementById("positionLongitude").value - halfWidth), Number(document.getElementById("positionLatitude").value - halfWidth)])[1],
+													vis.projection([Number(document.getElementById("positionLongitude").value + halfWidth), Number(document.getElementById("positionLatitude").value + halfWidth)])[1]
+											  ]),
+									]
+								],
+						dx = bounds[1][0] - bounds[0][0],
+						dy = bounds[1][1] - bounds[0][1],
+						x = coords[0],
+						y = coords[1],
+						
+						/*scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx/vis.width, dy/vis.height))),*/
+						scale = ((vis.width/2)/(Math.PI))/25;
+						translate = [vis.width / 2 - scale * x, vis.height / 2 - scale * y];
+						
+				
+					drawCentrePoint(); // call function to draw marker on selected [lon,lat] point
+					
+						
+					// transtiion main svg map to new centre on new position
+					vis.svg.transition()
+						.duration(vis.config.vars.duration)
+						.call( vis.zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) ); // updated for d3 v4
+						
+			
+					
+					// update class name for magnify reset butto
+					$(".magnify.reset").removeClass("disabled");
+				}
+				else {
+					
+				}
+				
+				
+				return;
+				
+				
+			}// end function onblurLongitude()
+
+
+	
+	
+	
+		/*
+			NAME: 			drawCentrePoint			
+			DESCRIPTION: 	function to draw marker at selected user defined zoomed to [lon,lat] point 
+			CALLED FROM:	onblurLatitude
+							onblurLongitude
+			CALLS:			n/a	
+			REQUIRES: 		n/a	
+			RETURNS: 		n/a		
+		*/
+		function drawCentrePoint(){
+				
+				
+				// remove all other previous instances of trl-centrePoint markers
+				d3.selectAll(".trl-centrePoint").remove();
+				
+				
+				// append new  trl-centrePoint marker
+				vis.g.append("circle")
+						.attr("cx", vis.projection([Number(document.getElementById("positionLongitude").value) , Number(document.getElementById("positionLatitude").value)])[0] )
+						.attr("cy", vis.projection([Number(document.getElementById("positionLongitude").value) , Number(document.getElementById("positionLatitude").value)])[1] )
+						.attr("class", "trl-centrePoint" )
+						.attr("r", 5);
+				
+				
+				// append new  trl-centrePoint marker
+				vis.g.append("circle")
+						.attr("cx", vis.projection([Number(document.getElementById("positionLongitude").value) , Number(document.getElementById("positionLatitude").value)])[0] )
+						.attr("cy", vis.projection([Number(document.getElementById("positionLongitude").value) , Number(document.getElementById("positionLatitude").value)])[1] )
+						.attr("class", "trl-centrePoint trl-centreDot" )
+						.attr("r", 0.5);
+						
+						
+				return;
+				
+				
+			}// end function drawCentrePoint
+		
+		
+		</script>
+        
+        <script src="../js/dist/main.js"></script>
+        <!--<script src="../js/script.js"></script>-->
+	</body>
+    
+</html>

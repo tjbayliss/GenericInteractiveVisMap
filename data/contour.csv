@@ -1,0 +1,2 @@
+exclude,scaleType,domain,range,thresholds,bandWidth,cellSize,contourFile
+,log,"0.00390625,0.76,1.5","#fee0d2,#fc9272,#de2d26","0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512",7,6,contours0.csv

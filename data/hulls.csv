@@ -1,0 +1,3 @@
+exclude,countries,group,class,hullFill,hullStroke,hullStrokeWidth,hullFillOpacity,siteFill,siteStroke,legendEntry
+,"[""Brazil"" , ""Argentina"" , ""Chile"" ]",subregion,Caribbean,#FF0000,#0000FF,1.5,0.5,#F00,#F00,Hull0
+,"[""Brazil"" , Peru , ""Chile"" ]",subregion,Caribbean,#A00000,#00FF00,1.5,0.5,#0F0,#F00,Hull1
