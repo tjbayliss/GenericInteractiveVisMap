@@ -1,4 +1,4 @@
-# GenericInteractiveVisMap
+# Interactive responsive map template
 Template build for a Generic Interactive Map Visualisation Tool. 
 
 # __Contents__
